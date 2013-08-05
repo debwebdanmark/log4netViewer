@@ -1,0 +1,20 @@
+﻿
+/* log4net table styles */
+table#log-entries td {
+    padding: 5px;
+    border: solid 1px black;
+}
+
+.log-id {
+    text-align: right;
+    vertical-align: top;
+}
+
+.log-date {
+    width: 170px;
+    text-align: right;
+}
+
+.log-level {
+    width: 70px;
+}

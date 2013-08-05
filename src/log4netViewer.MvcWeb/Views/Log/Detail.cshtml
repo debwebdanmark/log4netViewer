@@ -1,0 +1,33 @@
+﻿@model log4netViewer.MvcWeb.Models.LogDetailModel
+@{
+    ViewBag.Title = "Log Detail for Id = " + Model.Log.Id;
+}
+
+<h2>Log Detail</h2>
+
+<div>
+    @Html.ActionLink("Back", "Index", "Home")
+</div>
+
+<div id="log-detail">
+	<hr />
+
+	<h4><em>@Model.Log.Message</em></h4>
+
+	<p><b>Id:</b> @Model.Log.Id</p>
+	<p><b>Date:</b> @Model.Log.Date</p>
+	<p><b>Thread:</b> @Model.Log.Thread</p>
+    <p><b>Level:</b> @Model.Log.Level</p>
+	<p><b>Logger:</b> @Model.Log.Logger</p>
+
+	<p><b>Stack Trace:</b></p>
+	<table width="100%" bgcolor="#ffffcc">
+		<tr>
+			<td>
+				<pre>
+@Model.Log.Exception
+				</pre>
+			</td>
+		</tr>
+	</table>
+</div>
