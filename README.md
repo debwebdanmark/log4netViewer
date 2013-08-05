@@ -12,7 +12,7 @@ Requirements
 * A SQL Server database containing a log4net table ([Sample AdoNetAppender schema](http://logging.apache.org/log4net/release/config-examples.html#adonetappender-mssql))
 
 
-Setup
+Usage
 -----
 
 1.  Either clone the repository locally, or download the source code.
