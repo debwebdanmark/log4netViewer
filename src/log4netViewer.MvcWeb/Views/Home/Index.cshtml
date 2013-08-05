@@ -6,29 +6,36 @@
 <h3>Last @Model.Logs.Count Logs</h3>
 
 <div>
-    <table id="log-entries">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Level</th>
-                <th>Logger</th>
-                <th>Message</th>
-                <th>Exception</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var log in Model.Logs)
-            {
+    @if (Model.Logs.Count > 0)
+    {
+        <table id="log-entries">
+            <thead>
                 <tr>
-                    <td class="log-id">@Html.ActionLink(@log.Id.ToString(), "Detail", "Log", new { id = log.Id }, null)</td>
-                    <td class="log-date">@log.Date</td>
-                    <td class="log-level">@log.Level</td>
-                    <td>@log.Logger</td>
-                    <td>@log.Message</td>
-                    <td>@log.Exception</td>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Level</th>
+                    <th>Logger</th>
+                    <th>Message</th>
+                    <th>Exception</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var log in Model.Logs)
+                {
+                    <tr>
+                        <td class="log-id">@Html.ActionLink(@log.Id.ToString(), "Detail", "Log", new { id = log.Id }, null)</td>
+                        <td class="log-date">@log.Date</td>
+                        <td class="log-level">@log.Level</td>
+                        <td>@log.Logger</td>
+                        <td>@log.Message</td>
+                        <td>@log.Exception</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div>There are no logs to display. Hurray!</div>
+    }
 </div>
