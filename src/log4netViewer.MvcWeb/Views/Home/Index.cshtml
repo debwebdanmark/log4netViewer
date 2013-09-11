@@ -3,11 +3,39 @@
     ViewBag.Title = "Home";
 }
 
-<h3>Last @Model.Logs.Count Logs</h3>
+<div class="row-fluid">
+    <div class="span6">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "change-database-form", @class = "form-inline", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="fieldset">
+                <legend>Change Database</legend>
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.SelectedLogDatabase, Model.LogDatabases, new { @class = "form-control" })
+                    <button id="btn-change-database" class="btn btn-primary">Change</button>
+                </div>
+            </fieldset>
+        }
+    </div>
+    <div class="span6">
+        @using (Html.BeginForm("TruncateLogs", "Home", FormMethod.Post, new { id = "truncate-logs-form", @class = "form-inline", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <fieldset class="fieldset">
+                <legend>Truncate Logs in @Model.SelectedLogDatabaseName</legend>
+                <div class="form-group">
+                    <button id="btn-truncate-logs" class="btn btn-default">Truncate Logs</button>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
 
 <div>
     @if (Model.Logs.Count > 0)
     {
+        <h3>Last @Model.Logs.Count Logs</h3>
+        
         <table id="log-entries">
             <thead>
                 <tr>
@@ -36,6 +64,19 @@
     }
     else
     {
-        <div>There are no logs to display. Hurray!</div>
+        <h3>There are no logs to display. Hurray!</h3>
     }
 </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#truncate-logs-form").submit(function(evt) {
+                if (!confirm("Really truncate logs?!?")) {
+                    evt.preventDefault();
+                }
+            });
+        });
+    </script>
+}

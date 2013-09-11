@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4netViewer.MvcWeb.Extensions;
 using log4netViewer.MvcWeb.Models;
 using StackExchange.Profiling;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace log4netViewer.MvcWeb.Controllers
     {
         public ActionResult Detail(int id)
         {
-            var model = new LogDetailModel();
+            var model = new LogDetailModel { LogDatabaseName = GetSelectedConnectionStringName().ToFriendlyLogDatabaseName() };
             var profiler = MiniProfiler.Current;
 
             using (profiler.Step("Getting log details from database"))
