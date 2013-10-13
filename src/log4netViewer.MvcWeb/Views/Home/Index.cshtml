@@ -54,7 +54,7 @@
                         <td class="log-id">@Html.ActionLink(@log.Id.ToString(), "Detail", "Log", new { id = log.Id }, null)</td>
                         <td class="log-date">@log.Date</td>
                         <td class="log-level">@log.Level</td>
-                        <td>@log.Logger</td>
+                        <td title="@log.Logger">@log.ShortenedLogger</td>
                         <td>@log.Message</td>
                         <td>@log.Exception</td>
                     </tr>

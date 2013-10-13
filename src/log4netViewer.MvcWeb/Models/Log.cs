@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace log4netViewer.MvcWeb.Models
 {
@@ -14,5 +15,24 @@ namespace log4netViewer.MvcWeb.Models
         public string Logger { get; set; }
         public string Message { get; set; }
         public string Exception { get; set; }
+
+        public string ShortenedLogger
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Logger))
+                {
+                    return Logger;
+                }
+
+                if (!Logger.Contains("."))
+                {
+                    return Logger;
+                }
+
+                var lastDotPos = Logger.LastIndexOf(".");
+                return string.Concat("...", Logger.Substring(lastDotPos + 1, (Logger.Length - lastDotPos) - 1));
+            }
+        }
     }
 }
